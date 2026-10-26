@@ -1,0 +1,10 @@
+FROM node:24.22.0@sha256:925de64a85319052d6971ae81ef2417da956e8a3a2c4a0fac732327970f017f5
+ENV UV_THREADPOOL_SIZE=1
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev --no-audit --no-fund
+COPY server.js bridge.c ./
+RUN cc -O2 -o /app/bridge /app/bridge.c
+USER node
+EXPOSE 3000
+CMD ["node", "/app/server.js"]

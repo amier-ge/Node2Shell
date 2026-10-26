@@ -1,0 +1,12 @@
+services:
+  shell:
+    build:
+      context: ./website
+      dockerfile: Dockerfile.shell
+    platform: linux/amd64
+    environment:
+      UV_THREADPOOL_SIZE: "1"
+    ports:
+      - "127.0.0.1:18086:3000"
+    entrypoint: ["sh", "-lc", "while true; do node /app/server.js; sleep 0.1; done"]
+    restart: "no"

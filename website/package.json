@@ -1,0 +1,8 @@
+{
+  "name": "node2shell-express-rce-lab",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "5.3.0"
+  }
+}
